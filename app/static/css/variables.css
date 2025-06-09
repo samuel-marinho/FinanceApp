@@ -1,0 +1,30 @@
+:root {
+    /* Cores */
+    --color-primary: #5636d3;
+    --color-primary-light: rgba(86, 54, 211, 0.3);
+
+    --color-secondary: #ff872c;
+    --color-secondary-light: rgba(255, 135, 44, 0.3);
+
+    --color-success: #12a454;
+    --color-success-light: rgba(18, 164, 84, 0.5);
+
+    --color-attention: #e83f5b;
+    --color-attention-light: rgba(232, 63, 91, 0.5);
+
+    --color-shape: #ffffff;
+    --color-title: #363f5f;
+    --color-text: #969cb2;
+    --color-text-dark: #000000;
+    --color-background: #f0f2f5;
+
+    /* Botões */
+    --color-button-primary: #2c2c2c;
+    --color-button-secondary: #404040;
+    --color-button-hover: #1a1a1a;
+
+    /* Fontes */
+    --font-regular: 'Poppins', sans-serif;
+    --font-medium: 'Poppins', sans-serif;
+    --font-bold: 'Poppins', sans-serif;
+} 

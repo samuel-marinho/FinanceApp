@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Financeiro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-light shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">Finanças</a>
+            <div>
+                <a class="btn btn-outline-primary me-2" href="/">Nova Despesa</a>
+                <a class="btn btn-primary" href="/resumo">Resumo</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <!-- Formulário de Despesa/Orçamento -->
+            <div class="col-lg-5 mb-4">
+                <div class="card shadow-lg p-4" style="border-radius: 1.5rem;">
+                    <div class="text-center mb-4">
+                        <h4 class="fw-bold text-primary mb-1">Adicionar</h4>
+                        <p class="text-muted mb-0">Registre suas despesas ou defina um orçamento</p>
+                    </div>
+                    <div class="mb-3 d-flex justify-content-center gap-2">
+                        <button id="btnTipoDespesa" class="btn btn-primary btn-sm" type="button">Nova Despesa</button>
+                        <button id="btnTipoOrcamento" class="btn btn-outline-primary btn-sm" type="button">Novo Orçamento</button>
+                    </div>
+                    <form id="despesaForm">
+                        <div id="despesasContainer">
+                            <div class="despesa-item mb-3">
+                                <div class="row g-2 align-items-center">
+                                    <div class="col-12 col-md-5">
+                                        <input type="text" class="form-control" placeholder="Nome da despesa" required>
+                                    </div>
+                                    <div class="col-7 col-md-4">
+                                        <select class="form-select" required>
+                                            <option value="">Categoria</option>
+                                            <option>Transporte</option>
+                                            <option>Mercado</option>
+                                            <option>Saúde</option>
+                                            <option>Contas</option>
+                                            <option>Gastos Extras</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-5 col-md-2">
+                                        <input type="number" class="form-control" placeholder="Valor" step="0.01" required>
+                                    </div>
+                                    <div class="col-12 col-md-1 text-end">
+                                        <button type="button" class="btn btn-light btn-remove d-none d-md-inline"><i class="bi bi-x-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <button type="button" class="btn btn-outline-primary" id="addDespesa">
+                                <i class="bi bi-plus-circle"></i> Adicionar
+                            </button>
+                            <button type="submit" class="btn btn-primary px-4 shadow-sm">Salvar</button>
+                        </div>
+                    </form>
+                    <form id="orcamentoForm" class="d-none mt-3">
+                        <div class="mb-3">
+                            <label for="orcCategoria" class="form-label">Categoria</label>
+                            <select class="form-select" id="orcCategoria" required>
+                                <option value="">Selecione</option>
+                                <option>Transporte</option>
+                                <option>Mercado</option>
+                                <option>Saúde</option>
+                                <option>Contas</option>
+                                <option>Gastos Extras</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="orcValor" class="form-label">Valor do Orçamento</label>
+                            <input type="number" class="form-control" id="orcValor" placeholder="R$" step="0.01" required>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary px-4 shadow-sm">Salvar Orçamento</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Lista de Transações -->
+            <div class="col-lg-7">
+                <div class="card shadow-lg" style="border-radius: 1.5rem;">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="card-title mb-0 fw-bold">Transações Recentes</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush" id="transacoesList">
+                            <!-- As transações serão inseridas aqui via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orçamentos -->
+                <div class="card shadow-lg mt-4" style="border-radius: 1.5rem;">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="card-title mb-0 fw-bold">Orçamentos</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush" id="orcamentosList">
+                            <!-- Os orçamentos serão inseridos aqui via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="fab" class="btn btn-primary rounded-circle shadow-lg position-fixed" style="bottom: 32px; right: 32px; width: 60px; height: 60px; font-size: 2rem; z-index: 1000;">
+        <i class="bi bi-plus"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+    <script>
+        // Alternar entre despesa e orçamento
+        const btnTipoDespesa = document.getElementById('btnTipoDespesa');
+        const btnTipoOrcamento = document.getElementById('btnTipoOrcamento');
+        const despesaForm = document.getElementById('despesaForm');
+        const orcamentoForm = document.getElementById('orcamentoForm');
+
+        btnTipoDespesa.onclick = () => {
+            btnTipoDespesa.classList.add('btn-primary');
+            btnTipoDespesa.classList.remove('btn-outline-primary');
+            btnTipoOrcamento.classList.remove('btn-primary');
+            btnTipoOrcamento.classList.add('btn-outline-primary');
+            despesaForm.classList.remove('d-none');
+            orcamentoForm.classList.add('d-none');
+        };
+
+        btnTipoOrcamento.onclick = () => {
+            btnTipoOrcamento.classList.add('btn-primary');
+            btnTipoOrcamento.classList.remove('btn-outline-primary');
+            btnTipoDespesa.classList.remove('btn-primary');
+            btnTipoDespesa.classList.add('btn-outline-primary');
+            despesaForm.classList.add('d-none');
+            orcamentoForm.classList.remove('d-none');
+        };
+
+        // FAB para adicionar despesa
+        document.getElementById('fab').onclick = function() {
+            if (despesaForm.classList.contains('d-none')) {
+                btnTipoDespesa.click();
+            } else {
+                document.getElementById('addDespesa').click();
+            }
+        };
+    </script>
+</body>
+</html>

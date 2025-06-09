@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import 'variables.css';
+
+body {
+    background-color: var(--color-background);
+    font-family: var(--font-regular);
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: var(--color-shape) !important;
+    border-radius: 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    color: var(--color-title) !important;
+    font-family: var(--font-bold);
+}
+
+.btn-primary {
+    background-color: var(--color-button-primary) !important;
+    border-color: var(--color-button-primary) !important;
+    color: var(--color-shape) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-button-hover) !important;
+    border-color: var(--color-button-hover) !important;
+}
+
+.btn-outline-primary {
+    color: var(--color-button-primary) !important;
+    border-color: var(--color-button-primary) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-button-primary) !important;
+    border-color: var(--color-button-primary) !important;
+    color: var(--color-shape) !important;
+}
+
+.btn-outline-secondary {
+    color: var(--color-button-secondary) !important;
+    border-color: var(--color-button-secondary) !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--color-button-secondary) !important;
+    border-color: var(--color-button-secondary) !important;
+    color: var(--color-shape) !important;
+}
+
+.card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.text-primary {
+    color: var(--color-primary) !important;
+}
+
+.text-danger {
+    color: var(--color-attention) !important;
+}
+
+.text-success {
+    color: var(--color-success) !important;
+}
+
+.bg-primary {
+    background-color: var(--color-primary) !important;
+}
+
+.bg-success {
+    background-color: var(--color-success) !important;
+}
+
+.bg-danger {
+    background-color: var(--color-attention) !important;
+}
+
+/* Estilos para o modal */
+.modal-content {
+    border-radius: 1rem;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para os inputs */
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.25rem var(--color-primary-light);
+}
+
+/* Estilos para as notificações toast */
+.toast {
+    border-radius: 0.5rem;
+}
+
+/* Estilos para os botões de ação */
+.btn-remove {
+    color: var(--color-text);
+}
+
+.btn-remove:hover {
+    color: var(--color-attention);
+}
+
+/* Estilos para os valores */
+#fab {
+    background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 24px 0 rgba(161, 140, 209, 0.25);
+    transition: background 0.2s;
+}
+#fab:hover {
+    background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+}
+
+.despesa-item {
+    background: #f8f9fa;
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px 0 rgba(161, 140, 209, 0.07);
+    border: none;
+}
+
+input.form-control {
+    border-radius: 0.75rem;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 1rem !important;
+    }
+    #fab {
+        right: 16px;
+        bottom: 16px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+} 
